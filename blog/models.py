@@ -12,13 +12,13 @@ class Blog(models.Model):
     )
     title = models.CharField(max_length=200, null=True)
     slug = models.SlugField(editable=False, unique=True, null=True)
-    main_image = models.ImageField(upload_to='media',null=True)
+    main_image = models.ImageField(upload_to='image',null=True)
     content = models.TextField(null=True)
     date_added = models.DateTimeField(auto_now_add=True,null=True)
     status = models.CharField(max_length=2, choices=STATUS,null=True)
     published = PublishedManager()
     objects = models.Manager()
-    
+
     def __str__(self):
         return self.title
 
