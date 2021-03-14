@@ -11,7 +11,7 @@ class Blog(models.Model):
         ('DR', 'draft')
     )
     title = models.CharField(max_length=200, null=True)
-    slug = models.SlugField(editable=False, unique=True, null=True)
+    slug = models.SlugField(editable=False, null=True)
     main_image = models.ImageField(upload_to='image',null=True)
     content = models.TextField(null=True)
     date_added = models.DateTimeField(auto_now_add=True,null=True)
@@ -32,5 +32,5 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+                self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
