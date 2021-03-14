@@ -1,10 +1,9 @@
-from django.template.defaultfilters import title
 from django.test import TestCase
 from django.test import Client
 from django.urls import reverse
 from django.contrib.auth.models import User
-from blog.views import detail_blog
-from blog.models.blog_model import Blog
+from blog.models import Blog
+
 class TestBlogView(TestCase):
     
     def setUp(self):
@@ -34,3 +33,4 @@ class TestDetailView(TestCase):
                                                                 'slug':self.test_blog.slug}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'blog/detail-blog.html')
+    
