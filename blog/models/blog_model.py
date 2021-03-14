@@ -33,6 +33,16 @@ class Blog(models.Model):
             'slug':self.slug
         })
 
+    @property
+    def get_read_time(self):
+        import math
+        import re
+        clean = re.compile('<.*?>')
+        c = re.sub(clean, '', self.content.replace(' ', ''))
+        word_length = len(c)
+        calc = math.ceil(word_length / 200)
+        return f'{calc} minutes' if calc > 1 else f'{calc} minute'
+
     def __str__(self):
         return self.title
 

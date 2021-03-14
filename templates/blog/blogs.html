@@ -1,4 +1,4 @@
 {%for blog in blogs%}
-<li><a href="{{blog.get_absolute_url}}">{{blog}}</a></li>
+<li><a href="{{blog.get_absolute_url}}">{{blog}} - {{blog.get_read_time}}</a></li>
 <!-- <img src="{{blog.main_image.url}}" alt=""> -->
 {%endfor%}

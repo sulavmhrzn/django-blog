@@ -8,6 +8,9 @@
 <h1>{{blog}}</h1>
 <p>Published: {{blog.date_added}}</p>
 <p>Views: {%get_hit_count for blog%}</p>
+<p>Time: {{blog.get_read_time}}</p>
+<hr>
+<p>{{blog.content|safe}}</p>
 <hr>
 <h2>Comments</h2>
 {%for comment in comments%}
@@ -21,3 +24,4 @@
     <div class="g-recaptcha" data-sitekey="6Lfgd34aAAAAAA-XwPC4YV5KUV0sbJ8secMX_Awr"></div>
     <button type="submit">Submit</button>
 </form>
+
