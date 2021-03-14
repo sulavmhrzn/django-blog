@@ -11,6 +11,14 @@ class HomePageView(ListView):
     context_object_name = 'blogs'
     paginate_by = 10
 
+def search_blogs(request):
+    title = request.GET.get('title','')
+    blogs = None
+    if title:
+        blogs = Blog.objects.filter(title__icontains=title).order_by('-date_added')
+    context = {'blogs':blogs}
+    return render(request, 'blog/search-blogs.html', context)
+
 @check_recaptcha
 def detail_blog(request, pk, author, slug):
     blog = get_object_or_404(Blog, pk=pk, author__username=author, slug=slug, status='PUB')

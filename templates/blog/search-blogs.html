@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{%load humanize%}
+{%block title%} Search {%endblock title%}
+{%block content%}
+<h3 class="p-3">Search</h3>
+<form method="get">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search Title" name='title'>
+        <button class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
+    </div>
+</form>
+{%for blog in blogs%}
+<div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
+      <p class="card-text"><small class="text-muted">Last updated {{blog.date_added|naturaltime}}</small></p>
+    </div>
+  </div>
+  {%endfor%}
+{%endblock content%}
