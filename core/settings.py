@@ -24,7 +24,7 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfgd34aAAAAAOMuxh2mfcxHERpBfCsAFnF7TNDm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'hitcount',
     'blog',
 ]
 
