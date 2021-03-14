@@ -9,6 +9,7 @@ class HomePageView(ListView):
     queryset = Blog.published.all().order_by('-date_added') 
     template_name = 'blog/blogs.html'
     context_object_name = 'blogs'
+    paginate_by = 10
 
 @check_recaptcha
 def detail_blog(request, pk, author, slug):
