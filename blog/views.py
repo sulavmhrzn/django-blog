@@ -2,7 +2,6 @@ import requests
 from django.shortcuts import redirect, render, get_object_or_404 ,get_list_or_404
 from django.views.generic.list import ListView
 from django.contrib import messages
-from django.conf import settings
 from blog.models import Blog
 from blog.models import Comment
 from blog.forms import CommentForm

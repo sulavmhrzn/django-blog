@@ -6,7 +6,7 @@
 {%endif%}
 
 <h1>{{blog}}</h1>
-<p>Published: {{blog.date_added}}</p>
+<p>Published: {{blog.date_added|date:'d-M-Y'}}</p>
 <p>Views: {%get_hit_count for blog%}</p>
 <p>Time: {{blog.get_read_time}}</p>
 <hr>

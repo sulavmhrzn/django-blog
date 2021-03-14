@@ -7,7 +7,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_editable = ('status',)
     list_filter = ('status', 'date_added')
     search_fields = ('title', 'author__username')
-
+    ordering = ('-status','-date_added')
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('name', 'blog', 'date_added')
