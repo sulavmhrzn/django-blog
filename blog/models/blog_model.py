@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount
-
+from tinymce.models import HTMLField
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status = 'PU')
@@ -16,7 +16,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=200, null=True)
     slug = models.SlugField(editable=False, null=True)
     main_image = models.ImageField(upload_to='image',null=True)
-    content = models.TextField(null=True)
+    content = HTMLField()
     date_added = models.DateTimeField(auto_now_add=True,null=True)
     status = models.CharField(max_length=2, choices=STATUS,null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
