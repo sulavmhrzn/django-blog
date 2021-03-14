@@ -3,7 +3,13 @@
     <li>{{message}}</li>
 {%endfor%}
 {%endif%}
-{{blog}}
+
+<h1>{{blog}}</h1>
+<hr>
+<h2>Comments</h2>
+{%for comment in comments%}
+    <li>{{comment.body}} by {{comment}}</li>
+{%endfor%}
 
 <form method="post">
     {%csrf_token%}

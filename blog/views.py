@@ -1,7 +1,8 @@
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404 ,get_list_or_404
 from django.views.generic.list import ListView
 from django.contrib import messages
-from blog.models.blog_model import Blog
+from blog.models import Blog
+from blog.models import Comment
 from blog.forms import CommentForm
 
 class HomePageView(ListView):
@@ -10,9 +11,10 @@ class HomePageView(ListView):
     context_object_name = 'blogs'
 
 def detail_blog(request, pk, author, slug):
-    blog = get_object_or_404(Blog, pk=pk, author__username=author, slug=slug)
+    blog = get_object_or_404(Blog, pk=pk, author__username=author, slug=slug, status='PU')
+    comments = Comment.objects.filter(blog=blog)
     form = CommentForm()
-    
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -27,6 +29,7 @@ def detail_blog(request, pk, author, slug):
 
     context = {
         'blog':blog,
+        'comments':comments,
         'form':form
     }
     return render(request, 'blog/detail-blog.html', context)
