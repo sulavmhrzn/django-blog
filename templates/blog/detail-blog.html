@@ -1,27 +1,45 @@
+{%extends 'base.html'%}
 {%load hitcount_tags%}
-{%if messages%}
-{%for message in messages%}
-    <li>{{message}}</li>
-{%endfor%}
-{%endif%}
+{%load crispy_forms_tags%}
+{%block title%} {{blog}} {%endblock title%}
+{%block content%}
 
-<h1>{{blog}}</h1>
-<p>Published: {{blog.date_added|date:'d-M-Y'}}</p>
-<p>Views: {%get_hit_count for blog%}</p>
-<p>Time: {{blog.get_read_time}}</p>
+
+<h1 class="text-center p-3">{{blog}}</h1>
+<div class="d-flex flex-row-reverse gap-3">
+    <p>Published: {{blog.date_added|date:'d-M-Y'}}</p>
+    <p>Views: {%get_hit_count for blog%}</p>
+    <p>Time: {{blog.get_read_time}}</p>
+</div>
+<div class="border p-3">
+    {%if blog.main_image %}
+    <img src="{{blog.main_image.url}}" class="img-fluid" alt="">
+    {%endif%}
+    <p>{{blog.content|safe}}</p>
+</div>
 <hr>
-<p>{{blog.content|safe}}</p>
-<hr>
-<h2>Comments</h2>
+{%if comments%}
+<h2>Comments:</h2>
 {%for comment in comments%}
-    <li>{{comment.body}} by {{comment}}</li>
+<div class="card">
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>{{comment.body}}</p>
+        <footer class="blockquote-footer"><cite title="Source Title">{{comment.name}}</cite></footer>
+      </blockquote>
+    </div>
+  </div>
 {%endfor%}
-
+{%else%}
+<h2>There are no comments for this article yet!</h2>
+{%endif%}
+<h3 class="mt-3">Leave a comment:</h3>
 <form method="post">
     {%csrf_token%}
-    {{form.as_p}}
+    {{form|crispy}}
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <div class="g-recaptcha" data-sitekey="6Lfgd34aAAAAAA-XwPC4YV5KUV0sbJ8secMX_Awr"></div>
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-outline-primary mt-3">Submit</button>
 </form>
 
+{%endblock content%}

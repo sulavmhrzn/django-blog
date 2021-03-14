@@ -1,5 +1,4 @@
-import requests
-from django.shortcuts import redirect, render, get_object_or_404 ,get_list_or_404
+from django.shortcuts import redirect, render, get_object_or_404 
 from django.views.generic.list import ListView
 from django.contrib import messages
 from blog.models import Blog
@@ -7,7 +6,7 @@ from blog.models import Comment
 from blog.forms import CommentForm
 from blog.decorators.recaptcha import check_recaptcha
 class HomePageView(ListView):
-    queryset = Blog.published.all() 
+    queryset = Blog.published.all().order_by('-date_added') 
     template_name = 'blog/blogs.html'
     context_object_name = 'blogs'
 

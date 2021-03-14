@@ -1,4 +1,13 @@
+{%extends 'base.html'%}
+{%load humanize%}
+{%block title%}Blogs {%endblock title%}
+{%block content%}
 {%for blog in blogs%}
-<li><a href="{{blog.get_absolute_url}}">{{blog}} - {{blog.get_read_time}}</a></li>
-<!-- <img src="{{blog.main_image.url}}" alt=""> -->
+<div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
+      <p class="card-text"><small class="text-muted">Last updated {{blog.date_added|naturaltime}}</small></p>
+    </div>
+  </div>
 {%endfor%}
+{%endblock content%}
