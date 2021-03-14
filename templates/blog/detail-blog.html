@@ -14,5 +14,7 @@
 <form method="post">
     {%csrf_token%}
     {{form.as_p}}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <div class="g-recaptcha" data-sitekey="6Lfgd34aAAAAAA-XwPC4YV5KUV0sbJ8secMX_Awr"></div>
     <button type="submit">Submit</button>
 </form>
