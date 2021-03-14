@@ -1,1 +1,12 @@
+{%if messages%}
+{%for message in messages%}
+    <li>{{message}}</li>
+{%endfor%}
+{%endif%}
 {{blog}}
+
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Submit</button>
+</form>
