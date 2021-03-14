@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
-from .models import Blog
+from blog.models.blog_model import Blog
 class HomePageView(ListView):
     queryset = Blog.published.all() 
     template_name = 'blog/blogs.html'

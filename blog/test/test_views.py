@@ -4,7 +4,7 @@ from django.test import Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 from blog.views import detail_blog
-from blog.models import Blog
+from blog.models.blog_model import Blog
 class TestBlogView(TestCase):
     
     def setUp(self):
