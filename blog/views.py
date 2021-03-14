@@ -14,7 +14,7 @@ class HomePageView(ListView):
 
 @check_recaptcha
 def detail_blog(request, pk, author, slug):
-    blog = get_object_or_404(Blog, pk=pk, author__username=author, slug=slug, status='PU')
+    blog = get_object_or_404(Blog, pk=pk, author__username=author, slug=slug, status='PUB')
     comments = Comment.objects.filter(blog=blog).order_by('-date_added')
 
     if request.method == 'POST':

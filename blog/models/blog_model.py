@@ -7,23 +7,25 @@ from hitcount.models import HitCount
 from tinymce.models import HTMLField
 class PublishedManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(status = 'PU')
+        return super().get_queryset().filter(status = 'PUB')
 class Blog(models.Model):
+    PUBLISHED = 'PUB'
+    DRAFT = 'DRA'
     STATUS = (
-        ('PU', 'published'),
-        ('DR', 'draft')
+        (PUBLISHED, 'Published'),
+        (DRAFT, 'Draft')
     )
     title = models.CharField(max_length=200, null=True)
     slug = models.SlugField(editable=False, null=True)
-    main_image = models.ImageField(upload_to='image',null=True)
+    main_image = models.ImageField(upload_to='image', null=True)
     content = HTMLField()
-    date_added = models.DateTimeField(auto_now_add=True,null=True)
-    status = models.CharField(max_length=2, choices=STATUS,null=True)
+    date_added = models.DateTimeField(auto_now_add=True, null=True)
+    status = models.CharField(max_length=3, choices=STATUS, default=DRAFT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    published = PublishedManager()
     objects = models.Manager()
+    published = PublishedManager()
     hit_count_generic = GenericRelation(HitCount,
-                                    object_id_field='object_p',
+                                    object_id_field='object_pk',
                                     related_query_name='hit_count_generic_relation') 
 
     def get_absolute_url(self):
@@ -48,5 +50,5 @@ class Blog(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-                self.slug = slugify(self.title)
+            self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
