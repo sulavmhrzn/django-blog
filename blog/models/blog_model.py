@@ -38,8 +38,8 @@ class Blog(models.Model):
         import math
         import re
         clean = re.compile('<.*?>')
-        c = re.sub(clean, '', self.content.replace(' ', ''))
-        word_length = len(c)
+        c = re.sub(clean, '', self.content)
+        word_length = len(c.split())
         calc = math.ceil(word_length / 200)
         return f'{calc} minutes' if calc > 1 else f'{calc} minute'
 
