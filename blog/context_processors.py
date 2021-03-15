@@ -5,3 +5,9 @@ def get_recent_blog_posts(request):
     return {
         'recent_blogs':blogs
     }
+
+def get_all_tags(request):
+    tags = Blog.tags.all()
+    return {
+        'all_tags': tags
+    }

@@ -6,6 +6,11 @@
 <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
+      {%for tag in blog.tags.all%}
+      <a href="{%url 'tagged_blogs' tag.slug%}">
+        <span class="badge bg-primary">{{tag.name}}</span>
+      </a>
+      {%endfor%}
       <p class="card-text"><small class="text-muted">Last updated {{blog.date_added|naturaltime}}</small></p>
     </div>
   </div>

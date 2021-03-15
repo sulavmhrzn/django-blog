@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from hitcount.models import HitCount
 from tinymce.models import HTMLField
+from taggit.managers import TaggableManager
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status = 'PUB')
@@ -22,6 +23,7 @@ class Blog(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=3, choices=STATUS, default=DRAFT)
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    tags = TaggableManager()
     objects = models.Manager()
     published = PublishedManager()
     hit_count_generic = GenericRelation(HitCount,

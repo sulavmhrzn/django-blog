@@ -1,0 +1,12 @@
+<div class="border border-1 border-secondary p-2 mb-3">
+    <h3>Tags:</h3>
+    <div class="d-flex flex-row gap-2">
+        {%for tag in all_tags%}
+        <a href="{%url 'tagged_blogs' tag.slug%}">
+            <span class="badge bg-primary">
+                {{tag}}
+            </span>
+        </a>
+        {%endfor%}
+    </div>
+</div>

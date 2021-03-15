@@ -1,7 +1,13 @@
     <h3>Recent Blogs</h3>
     {%for blog in recent_blogs%}
     <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-        <div class="card-header">Tag Here</div>
+        <div class="card-header">
+          {%for tag in blog.tags.all%}
+          <a href="{%url 'tagged_blogs' tag.slug%}">
+          <span class="badge bg-primary">{{tag.name}}</span>
+          </a>
+          {%endfor%}
+        </div>
         <div class="card-body">
           <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
           <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->

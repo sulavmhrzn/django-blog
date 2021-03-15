@@ -15,9 +15,17 @@ def search_blogs(request):
     title = request.GET.get('title','')
     blogs = None
     if title:
-        blogs = Blog.objects.filter(title__icontains=title).order_by('-date_added')
+        blogs = Blog.published.filter(title__icontains=title).order_by('-date_added')
     context = {'blogs':blogs}
     return render(request, 'blog/search-blogs.html', context)
+
+def tagged_blogs(request, slug):
+    blogs = Blog.published.filter(tags__slug__in=[slug]).distinct()
+    context ={
+        'blogs':blogs,
+        'slug':slug
+    }
+    return render(request, 'blog/tagged-blogs.html', context)
 
 @check_recaptcha
 def detail_blog(request, pk, author, slug):

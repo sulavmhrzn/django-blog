@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'hitcount',
     'tinymce',
     'crispy_forms',
+    'taggit',
     'blog',
 ]
 
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'blog.context_processors.get_recent_blog_posts',
+                'blog.context_processors.get_all_tags',
             ],
         },
     },
