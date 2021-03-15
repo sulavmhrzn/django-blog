@@ -9,7 +9,7 @@
     <div class="card-body">
       <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
       {%for tag in blog.tags.all%}
-      <a href="">
+      <a href="{%url 'tagged_blogs' tag.slug%}">
         <span class="badge bg-primary">{{tag}}</span>
       </a>
       {%endfor%}
