@@ -2,9 +2,9 @@
 {%load humanize%}
 {%block title%} Tagged {%endblock title%}
 {%block content%}
-<h1>Blogs containing tag: {{slug}}</h1>
+<h1>{{blogs.count}} blog posts containing tag: {{slug}}</h1>
 {%if blogs%}
-{%for blog in blogs%}
+{%for blog in page_obj%}
 <div class="card mb-3">
     <div class="card-body">
       <h5 class="card-title"><a href="{{blog.get_absolute_url}}">{{blog}}</a></h5>
@@ -17,6 +17,30 @@
     </div>
   </div>
 {%endfor%}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    {%if page_obj.has_previous%}
+    <li class="page-item">
+      <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    {%endif%}
+    {%for i in paginator.page_range%}
+      {%if page_obj.number == i%}
+      <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+      {%else%}
+      <li class="page-item"><a class="page-link" href="#">{{i}}</a></li>
+      {%endif%}
+    {%endfor%}
+
+    {%if page_obj.has_next%}
+    <li class="page-item">
+      <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+    </li>
+    {%endif%}
+  </ul>
+</nav>
+
 {%else%}
 <h2 class="text-muted">There were no blogs found with the given {{slug}}.</h2>
 {%endif%}
