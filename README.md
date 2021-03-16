@@ -7,6 +7,7 @@
     - WYSIWYG editor
     - Comments
     - Pagination
+    - Share
 
 ## Packages used:
     - Hitcount
@@ -14,7 +15,7 @@
     - Django cirspy forms
     - Django tinymce
    
-## Screeen Shot:
+## ScreeenShots:
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/home.png)
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/search.png)
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/tag.png)
