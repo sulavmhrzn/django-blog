@@ -18,6 +18,10 @@
     <p>{{blog.content|safe}}</p>
 </div>
 <hr>
+<form action="{%url 'send_email' blog.pk blog.author blog.slug%}">
+  <button class="btn btn-primary" type="submit">Share</button>
+</form>
+<hr>
 {%if comments%}
 <h2>Comments:</h2>
 {%for comment in comments%}
