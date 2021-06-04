@@ -20,3 +20,4 @@
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/search.png)
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/tag.png)
 ![](https://github.com/sulavmhrzn/django-blog/blob/main/screenshots/detail.png)
+
